@@ -21,4 +21,9 @@ print(random,type(random))
 prime = gmpy2.next_prime(10000009999)
 print(prime)
 
+num_mpz = mpz(4444444)
+num = num_mpz.digits()
+print(num,type(num))
 
+a = gmpy2.mpq(2)
+print(type(a.numerator))

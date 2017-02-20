@@ -41,7 +41,8 @@ class HomoEnc(object):
         k = self.k
         g_tk = pk_b**k
         g_sk = g_k**sk_s
-        rk_sb = g_tk/g_sk
+        # rk_sb = g_tk/g_sk
+        rk_sb = gmpy2.mpq(g_tk,g_sk)
 
         return rk_sb
 
@@ -51,7 +52,6 @@ class HomoEnc(object):
         r = gmpy2.mpz_random(state,mpz('99'))
         N = self.N
         k = self.k
-        print(m)
         enc_m = (m + r * p) % N
         b = g_k = self.PP['g_k']
         g_xk = pk**k
@@ -63,14 +63,14 @@ class HomoEnc(object):
         enc_m = c['a']
         enc_m2 = enc_m*rk
 
-        return {'a':enc_m2,'b':c['b']}
+        return {'a':enc_m2.numerator,'b':c['b']}
 
     def Dec(self,sk,c):
         p = self.PP['p']
         a = c['a']
         b = c['b']
-        m = a/(b**sk)%p
-
+        # m = a/(b**sk)%p
+        m = gmpy2.div(a,b**sk)%p
 
         return m
 
@@ -84,8 +84,25 @@ if __name__ == '__main__':
     hm = HomoEnc(1)
     S_key = hm.KeyGen()
     B_key = hm.KeyGen()
-    m = mpz(2009)
+    m = mpz(67661)
     c = hm.Enc(S_key['pk'],m)
     mes = hm.Dec(S_key['sk'],c)
-    print(mes,type(mes))
+    print("s_key",mes,type(mes))
+
+    m2 = mpz(6)
+    c2 = hm.Enc(B_key['pk'],m2)
+    mss = hm.Dec(B_key['sk'],c2)
+    print("b_key: ",mss)
+
+    rk = hm.ReKeyGen(S_key['sk'],B_key['pk'])
+    c_sb = hm.ReEnc(rk,c)
+    msb = hm.Dec(B_key['sk'],c_sb)
+    print("b_key: ",msb,type(msb))
+
+    print(msb*mss,type(msb*mss))
+    c_mul = hm.Mul(c_sb,c2)
+    m_mul = hm.Dec(B_key['sk'],c_mul)
+    print("c_mul:",m_mul,type(m_mul))
+
+
 

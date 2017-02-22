@@ -11,6 +11,9 @@ iTrans = cv2.dct(Trans,flags=cv2.DCT_INVERSE) #dct inverse
 
 dst =  np.uint8(iTrans)
 
+print('img.shape ',img.shape)
+print('dct.shape ',Trans.shape)
+
 cv2.imshow('dct',dst)
 cv2.imshow('image',img)
 cv2.waitKey(0)

@@ -8,15 +8,15 @@ class HomoEnc(object):
 
         # seed = 99999
         state = gmpy2.random_state(1)
-        tmp1 = gmpy2.mpz_random(state,mpz('999999999999999'))
-        tmp2 = gmpy2.mpz_random(state,mpz('999999999999999'))
+        tmp1 = gmpy2.mpz_urandomb(state,1024)
+        tmp2 = gmpy2.mpz_urandomb(state,1024)
         p = gmpy2.next_prime(tmp1)  #generate random prime number
         q = gmpy2.next_prime(tmp2)
 
         N = p*q
 
-        k = gmpy2.mpz_random(state,mpz('99'))
-        g = gmpy2.mpz_random(state,mpz('99'))
+        k = gmpy2.mpz_random(state,999)
+        g = gmpy2.mpz_random(state,999)
         g_k = g**k
 
         ####private parameters
@@ -31,7 +31,7 @@ class HomoEnc(object):
         p = self.PP['p']
         g = self.PP['g']
         state = self.random_state
-        x = gmpy2.mpz_random(state,mpz('99'))
+        x = gmpy2.mpz_random(state,999)
         g_x = g**x
 
         return {'pk':g_x,'sk':x}
@@ -49,7 +49,7 @@ class HomoEnc(object):
     def Enc(self,pk,m):
         state = self.random_state
         p = self.PP['p']
-        r = gmpy2.mpz_random(state,mpz('99'))
+        r = gmpy2.mpz_random(state,999)
         N = self.N
         k = self.k
         enc_m = (m + r * p) % N

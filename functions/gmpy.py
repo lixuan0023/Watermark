@@ -14,22 +14,36 @@ from gmpy2 import mpz
 # mod = mpz('12')%mpz('3')
 # print(mod)
 
-state = gmpy2.random_state(6666667)
-random = gmpy2.mpz_random(state,mpz('999999999999999'))
-print(random,type(random))
+# state = gmpy2.random_state(6666667)
+# random = gmpy2.mpz_random(state,mpz('999999999999999'))
+# print(random,type(random))
 
-random = gmpy2.mpz_rrandomb(state,2048)
-random = gmpy2.mpz_urandomb(state,2048)
+# random = gmpy2.mpz_rrandomb(state,2048)
+# random = gmpy2.mpz_urandomb(state,2048)
 
-num = random.num_digits(2)
-print(num,type(num))
+# num = random.num_digits(2)
+# print(num,type(num))
 
-prime = gmpy2.next_prime(10000009999)
-print(prime)
+# prime = gmpy2.next_prime(10000009999)
+# print(prime)
 
-num_mpz = mpz(4444444)
-num = num_mpz.num_digits(2)
-print(num,type(num))
+# num_mpz = mpz(4444444)
+# num = num_mpz.num_digits(2)
+# print(num,type(num))
 
-a = gmpy2.mpq(2)
-print(type(a.numerator))
+# a = gmpy2.mpq(2)
+# print(type(a.numerator))
+
+
+a = -mpz('2')
+print(a)
+
+b= 0
+if a<0:
+    b=a
+    print("a<0")
+else:
+    b =a
+    print("a>0")
+print(b)
+

@@ -75,14 +75,14 @@ if __name__ == '__main__':
     print(waterG)
     print(wE)
 
-    imgName = "Lena.png"
-    img = cv2.imread(imgName,cv2.IMREAD_GRAYSCALE)
-    dst = wm.idct(dct)
-    cv2.imshow('dct',dst)
-    cv2.imshow('image',img)
-    cv2.imshow('diff',img-dst)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # imgName = "Lena.png"
+    # img = cv2.imread(imgName,cv2.IMREAD_GRAYSCALE)
+    # dst = wm.idct(dct)
+    # cv2.imshow('dct',dst)
+    # cv2.imshow('image',img)
+    # cv2.imshow('diff',img-dst)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
 
 
 
